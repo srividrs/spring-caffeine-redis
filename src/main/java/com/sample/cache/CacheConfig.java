@@ -20,23 +20,11 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 @EnableCaching
 public class CacheConfig {
 	
-	//@Autowired
-	//RedisCacheLoader loader;
-	
+		
 	@Autowired
 	@Qualifier("redisTemplate")
 	RedisTemplate redisTemplate;
 	
-	
-//	@Bean
-//	public CacheManager cacheManager() {
-//		SimpleCacheManager manager = new SimpleCacheManager();
-//		manager.setCaches(Arrays.asList(
-//	 new CaffeineCache("random", Caffeine.newBuilder().expireAfterWrite(60, TimeUnit.MINUTES).writer(randomDataCacheLoader()).build(randomDataCacheLoader()))//.build(cacheLoader());
-//	));
-//		return manager;
-//	}
-//	
 	
 	@Bean
 	public CaffeineCache randomCache() {
@@ -59,92 +47,6 @@ public class CacheConfig {
 	 redisMessageListenerContainer.addMessageListener(cacheMessageListener, new ChannelTopic("CACHE_INVALIDATE"));
 	 return redisMessageListenerContainer;
 	 }
-	
-	
-//	@Bean
-//	public Caffeine caffeineConfig() {
-//	    return Caffeine.newBuilder().expireAfterWrite(60, TimeUnit.MINUTES);
-//	}
-	
-//	@Bean
-//	public CacheManager cacheManager(Caffeine caffeine) {
-//	    CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
-//	    caffeineCacheManager.setCaffeine(caffeine);
-//	    return caffeineCacheManager;
-//	}
-	
-//	@Bean
-//	public Caffeine caffeineConfig() {
-//	    Caffeine caff =  Caffeine.newBuilder().expireAfterWrite(60, TimeUnit.MINUTES).writer(cacheWriter());//.build(cacheLoader());
-//	    caff.build(cacheLoader());
-//	    return caff;
-//	}
-//	
-//	@Bean
-//	public LoadingCache loadingCache() {
-//	    Caffeine caff =  Caffeine.newBuilder().expireAfterWrite(60, TimeUnit.MINUTES).writer(cacheWriter());//.build(cacheLoader());
-//	    return caff.build(cacheLoader());
-//	    //return caff;
-//	}
-
-//	@Bean
-//	public CacheManager cacheManager(Caffeine caffeine) {
-//	    CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
-//	    caffeineCacheManager.setCaffeine(caffeine);
-//	    return caffeineCacheManager;
-//	}
-	
-	
-//	public <K,V> CacheWriter<K,V> cacheWriter() {
-//		return new CacheWriter<K, V>() {
-//
-//			@Override
-//			public void write(K key, V value) {
-//				System.out.println("Writing Key & Value");
-//				
-//			}
-//
-//			@Override
-//			public void delete(K key, V value, @NonNull RemovalCause cause) {
-//				System.out.println("Deleting Key & Value");
-//
-//			}
-//		};
-//	}
-	
-//	public <K,V> CacheLoader<K, V> cacheLoader(){
-//		return new CacheLoader<K, V>() {
-//			
-//			@Override
-//			public @Nullable V load(@NonNull K key) throws Exception {
-//				System.out.println("Loading cache --------");
-//				if(key.toString().equals("0")) {
-//					System.out.println("Returning from level2 cache --------");
-//					return (@Nullable V) UUID.randomUUID().toString();
-//
-//				}
-//					else {
-//						System.out.println("Returning NULL from level2 cache --------");
-//					return null;
-//					}
-//			}
-//		};
-//	}
-	
-	
-	
-//	@Bean
-//	public RedisConnectionFactory standaloneConnectionFactory() {
-//		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisHost, redisPort);
-//		config.setPassword(redisPassword);
-//		return new JedisConnectionFactory(config);
-//	}
-//	 @Bean
-//	    public RedisTemplate<Object, Object> redisTemplate(final RedisConnectionFactory connectionFactory) {
-//	        RedisTemplate<Object, Object> template = new RedisTemplate<>();
-//	        template.setConnectionFactory(connectionFactory);
-//	        return template;
-//	    }
 
    
 
